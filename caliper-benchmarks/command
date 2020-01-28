@@ -1,0 +1,12 @@
+npx caliper benchmark run --caliper-workspace . --caliper-benchconfig benchmarks/scenario/smallbank/config1.yaml --caliper-networkconfig networks/2org1peer/fabric-go.yaml
+
+
+
+rsync -r crypto-config/ aws-caliper:workspace/caliper-1.4.4/caliper-benchmarks/crypto-config/
+rsync -r channel-artifacts/ aws-caliper:workspace/caliper-1.4.4/caliper-benchmarks/channel-artifacts/
+rsync -r networks/ aws-caliper:workspace/caliper-1.4.4/caliper-benchmarks/networks/
+rsync benchmarks/scenario/smallbank/config1.yaml aws-caliper:workspace/caliper-1.4.4/caliper-benchmarks/benchmarks/scenario/smallbank/config1.yaml
+rsync benchmarks/scenario/smallbank/config1.yaml aws-caliper2:workspace/caliper-1.4.4/caliper-benchmarks/benchmarks/scenario/smallbank/config1.yaml
+
+
+

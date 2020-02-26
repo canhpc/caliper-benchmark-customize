@@ -20,7 +20,6 @@ caliper:
   blockchain: fabric
   command:
     #start: export FABRIC_VERSION=1.4.1;docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb/docker-compose.yaml up -d;sleep 3s
-    start: export FABRIC_VERSION=1.4.4; echo -------START-------- 
     #end: docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb/docker-compose.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
     end: echo -------------STOP--------------  
 info:
@@ -97,7 +96,7 @@ organizations:
     mspid: Org1MSP
     peers:
     - peer1.org1.example.com
-    - peer2.org1.example.com
+    #- peer2.org1.example.com
     certificateAuthorities:
     - ca.org1.example.com
     adminPrivateKey:
@@ -109,7 +108,7 @@ organizations:
     mspid: Org2MSP
     peers:
     - peer1.org2.example.com
-    - peer2.org2.example.com
+    #- peer2.org2.example.com
     certificateAuthorities:
     - ca.org2.example.com
     adminPrivateKey:
@@ -119,37 +118,37 @@ organizations:
 
 orderers:
   orderer.example.com:
-    url: grpc://aws.orderer.example.com:7050
+    url: grpc://orderer.example.com:7050
     grpcOptions:
       ssl-target-name-override: orderer.example.com
 
 peers:
   peer1.org1.example.com:
-    url: grpc://aws.peer1.org1.example.com:7051
+    url: grpc://peer1.org1.example.com:7051
     grpcOptions:
       ssl-target-name-override: peer1.org1.example.com
       grpc.keepalive_time_ms: 600000
-  peer2.org1.example.com:
-    url: grpc://aws.peer2.org1.example.com:7051
-    grpcOptions:
-      ssl-target-name-override: peer2.org1.example.com
-      grpc.keepalive_time_ms: 600000
+  # peer2.org1.example.com:
+  #   url: grpc://peer2.org1.example.com:7051
+  #   grpcOptions:
+  #     ssl-target-name-override: peer2.org1.example.com
+  #     grpc.keepalive_time_ms: 600000
 
   peer1.org2.example.com:
-    url: grpc://aws.peer1.org2.example.com:7051
+    url: grpc://peer1.org2.example.com:7051
     grpcOptions:
       ssl-target-name-override: peer1.org2.example.com
       grpc.keepalive_time_ms: 600000
-  peer2.org2.example.com:
-    url: grpc://aws.peer1.org2.example.com:7051
-    grpcOptions:
-      ssl-target-name-override: peer2.org2.example.com
-      grpc.keepalive_time_ms: 600000
+  # peer2.org2.example.com:
+  #   url: grpc://peer1.org2.example.com:7051
+  #   grpcOptions:
+  #     ssl-target-name-override: peer2.org2.example.com
+  #     grpc.keepalive_time_ms: 600000
     
 
 certificateAuthorities:
   ca.org1.example.com:
-    url: http://aws.ca.org1.example.com:7054
+    url: http://ca.org1.example.com:7054
     httpOptions:
       verify: false
     registrar:
@@ -157,7 +156,7 @@ certificateAuthorities:
       enrollSecret: adminpw
 
   ca.org2.example.com:
-    url: http://aws.ca.org2.example.com:7054
+    url: http://ca.org2.example.com:8054
     httpOptions:
       verify: false
     registrar:

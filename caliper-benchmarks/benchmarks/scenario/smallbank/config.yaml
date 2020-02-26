@@ -12,7 +12,7 @@ test:
     rateControl:
     - type: fixed-rate
       opts:
-        tps: 0
+        tps: 100
     arguments:
       accounts: 20000
       txnPerBatch: 20
